@@ -4,9 +4,21 @@
     int counter = 0;
 }
 
-<div class="text-center">
+
+
+@*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
 </div>
+*@
+<div class="text-center">
+    <form asp-controller="Items" asp-action="Index">
+        <p>
+            Search: <input type="text" name="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+</div>
+
 <Div class="row mt-3">
 @foreach (var item in Model)
 {
@@ -15,7 +27,8 @@
         @:</div>
         @:<div class="row mt-3">
     }
-    <div class="col-md-4">
+    
+    @*<div class="col-md-4">
         <div class="card">
             <img class="card-img-top"  src="@Url.Content(item.Image)" alt="Image Not Found">
             <div class="card-block">
@@ -25,7 +38,23 @@
                 <a asp-action="Details" asp-controller="Items" asp-route-id="@item.Id" class="btn btn-primary">Information</a>
             </div>
         </div>
-    </div>
+    </div>*@
+
+
+  <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="@Url.Content(item.Image)" alt="Image Not Found">
+          <div class="card-body">
+              <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+              <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+              <p class="card-text">@Html.DisplayFor(modelItem => item.Category)</p>
+              <h6 class="card-title">@Html.DisplayFor(modelItem => item.Price)</h6>
+              <a asp-action="Details" asp-controller="Items" asp-route-id="@item.Id" class="btn btn-primary">Information</a>
+                
+            </div>    
+      </div>
+</div>
+
     counter++;
 
 }

@@ -20,8 +20,12 @@ namespace WebApplication2.Models
         public decimal Price { get; set; }
         [Required]
         public string Image { get; set; }
+        [DisplayName("Post Creation Date")]
         public DateTime CreatedDateTime { get; set; } = DateTime.Now;
         public string ApplicationUserId { get; set; }
+
+        [StringLength(20)]
+        public string Category { get; set; }
     }
 
     public class ApplicationUser : IdentityUser

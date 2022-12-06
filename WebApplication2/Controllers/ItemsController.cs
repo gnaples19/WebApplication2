@@ -95,6 +95,7 @@ namespace WebApplication2.Controllers
                     Name = model.Name,
                     Description = model.Description,
                     Price = model.Price,
+                    Category = model.Category,
                     Image = "/Images/" + uniqueFileName,
                     ApplicationUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
                 };                
@@ -127,7 +128,7 @@ namespace WebApplication2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Image,CreatedDateTime")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Category,Image,CreatedDateTime")] Item item)
         {
             if (id != item.Id)
             {

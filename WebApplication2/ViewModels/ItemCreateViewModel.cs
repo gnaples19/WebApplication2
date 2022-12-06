@@ -12,7 +12,10 @@ namespace WebApplication2.ViewModels
         [Required]
         [Column(TypeName = "decimal(8,2)")]
         public decimal Price { get; set; }
+        [StringLength(20)]
+        public string Category { get; set; }
         [Required]
+
         public IFormFile ImageSource { get; set; }
         public DateTime CreatedDateTime { get; set; } = DateTime.Now;
     }

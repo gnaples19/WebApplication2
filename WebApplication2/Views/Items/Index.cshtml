@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<WebApplication2.Models.Item>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Items";
 }
 
-<h1>Index</h1>
+<h1>Your Items</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary"> Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -20,6 +20,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Image)
@@ -42,6 +45,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+             
             <td>
                 <a href=@Url.Content(item.Image) target="_blank">
                     <img src="@Url.Content(item.Image)" alt="error" height="40" width="40" title="Image" style="float: none" />
