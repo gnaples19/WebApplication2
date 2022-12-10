@@ -18,10 +18,22 @@ namespace WebApplication2.Controllers
         }
 
         //public IActionResult Index()
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Items.ToListAsync());
+        //    //return View();
+        //}
+
+        //Search:Items
+        public async Task<IActionResult> Index(string? SearchString)
         {
-            return View(await _context.Items.ToListAsync());
-            //return View();
+            if (_context.Items == null)
+            {return Problem("Entity set is null.");}
+            var item = from m in _context.Items
+                       select m;
+            if (!String.IsNullOrEmpty(SearchString))
+            {item = item.Where(s => s.Name!.Contains(SearchString));}
+            return View(await item.ToListAsync());
         }
 
         public IActionResult Privacy()

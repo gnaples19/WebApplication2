@@ -1,22 +1,31 @@
-﻿@model IEnumerable<WebApplication2.Models.Item>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model IEnumerable<WebApplication2.Models.Item>
 @{
     ViewData["Title"] = "Home Page";
     int counter = 0;
 }
 
-
-
-@*<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
-*@
-<div class="text-center">
-    <form asp-controller="Items" asp-action="Index">
-        <p>
-            Search: <input type="text" name="SearchString" />
-            <input type="submit" value="Filter" />
-        </p>
-    </form>
+@if (SignInManager.IsSignedIn(User))
+{
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <form asp-controller="Home" asp-action="Index">
+        <div class="input-group">
+          <input type="search" id="form1" name="SearchString" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+          <button id="searchButton" class="btn btn-warning">search
+              <i class="fas fa-search"></i>
+          </button>
+          <button id="clearButton" class="btn btn-outline-danger">Clear</button>
+          @*@if (counter > 0 && counter < @Model.Count())
+          {
+              @:<button id="clearButton" class="btn btn-outline-danger">Clear</button>
+          }*@
+        </div>
+        </form>
+    </div>
 </div>
 
 <Div class="row mt-3">
@@ -27,7 +36,20 @@
         @:</div>
         @:<div class="row mt-3">
     }
-    
+
+  <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="@Url.Content(item.Image)" alt="Image Not Found">
+          <div class="card-body">
+              <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+              <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+              <p class="card-text">@Html.DisplayFor(modelItem => item.Category)</p>
+              <h6 class="card-title">@Html.DisplayFor(modelItem => item.Price)</h6>
+              <a asp-action="Details" asp-controller="Items" asp-route-id="@item.Id" class="btn btn-warning">Information</a>
+                
+            </div>    
+      </div>
+</div>
     @*<div class="col-md-4">
         <div class="card">
             <img class="card-img-top"  src="@Url.Content(item.Image)" alt="Image Not Found">
@@ -40,22 +62,29 @@
         </div>
     </div>*@
 
-
-  <div class="col-md-4">
-        <div class="card">
-          <img class="card-img-top" src="@Url.Content(item.Image)" alt="Image Not Found">
-          <div class="card-body">
-              <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-              <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-              <p class="card-text">@Html.DisplayFor(modelItem => item.Category)</p>
-              <h6 class="card-title">@Html.DisplayFor(modelItem => item.Price)</h6>
-              <a asp-action="Details" asp-controller="Items" asp-route-id="@item.Id" class="btn btn-primary">Information</a>
-                
-            </div>    
-      </div>
-</div>
-
     counter++;
 
 }
 </Div>
+}else
+{
+    <div class="container border-primary">
+        <div class="row"></div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 bg-dark rounded m-md-5 text-center"> 
+                        <div class=" row" style="height:25px"></div>
+                        <h1 class="display-4"style="color:white">Please Login to Continue</h1>
+                        <br>
+                    <form  class="form-inline" asp-area="Identity" asp-page="/Account/Login">
+                    <button type="submit" class="w-50 btn btn-lg btn-warning">Login</button>
+                </form>
+                <br>
+                <h1 class="display-6"style="color:white">or Make an Account</h1>
+                <form  class="form-inline" asp-area="Identity" asp-page="/Account/Register">
+                    <button type="submit" class="w-40 btn btn-md btn-warning">Sign Up</button>
+                </form>
+                <div class=" row" style="height:25px"></div>
+                   </div>
+                </div>
+        </div>
+}

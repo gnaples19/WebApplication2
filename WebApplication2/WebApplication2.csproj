@@ -20,8 +20,4 @@
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\Images\cvo.jpg" />
-  </ItemGroup>
-
 </Project>

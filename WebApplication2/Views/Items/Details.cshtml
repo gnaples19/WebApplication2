@@ -4,8 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
+
 <h1>Details</h1>
 @Html.Partial("_ItemImage")
+
 <div>
     <h4>Item</h4>
     <hr />
@@ -47,13 +49,16 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CreatedDateTime)
         </dd>
+
     </dl>
 </div>
 <div>
     @if (@ViewBag.MyItem == true)
-    {
-        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> 
-        <a asp-action="Index">Back to List</a>
+    {   
+            <a class=" btn btn-warning px-5" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+            <br>
+            <br>
+            <a asp-action="Index">Back to List</a>
     }
     else
     {

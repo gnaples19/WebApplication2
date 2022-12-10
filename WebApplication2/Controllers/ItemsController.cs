@@ -28,18 +28,17 @@ namespace WebApplication2.Controllers
             this.webHostEnvironment = webHostEnvironment;
         }
 
+
         // GET: Items
-        public async Task<IActionResult> Index()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var item = await _context.Items.Where(t => t.ApplicationUserId == userId).ToListAsync();
-            return View(item);
+         public async Task<IActionResult> Index()
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var item = await _context.Items.Where(t => t.ApplicationUserId == userId).ToListAsync();
+                return View(item);
+            }
 
-            //return View(await _context.Items.ToListAsync());
-        }
-
-        // GET: Items/Details/5
-        public async Task<IActionResult> Details(int? id)
+            // GET: Items/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Items == null)
             {
@@ -98,6 +97,7 @@ namespace WebApplication2.Controllers
                     Category = model.Category,
                     Image = "/Images/" + uniqueFileName,
                     ApplicationUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+
                 };                
 
                 _context.Add(newItem);
@@ -128,18 +128,18 @@ namespace WebApplication2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Category,Image,CreatedDateTime")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Category,Image,CreatedDateTime,ApplicationUserId")] Item item)
         {
             if (id != item.Id)
             {
                 return NotFound();
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if(userId != item.ApplicationUserId)
-            {
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //if(userId != item.ApplicationUserId)
+            //{
 
-            }
+            //}
 
             if (ModelState.IsValid)
             {

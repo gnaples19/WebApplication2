@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WebApplication2.Models.Item>
+﻿
+@model IEnumerable<WebApplication2.Models.Item>
 
 @{
     ViewData["Title"] = "Items";
@@ -7,7 +8,7 @@
 <h1>Your Items</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary"> Create New</a>
+    <a asp-action="Create" class="btn btn-warning"> List New Item</a>
 </p>
 <table class="table">
     <thead>
@@ -35,7 +36,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+    <tr valign="middle">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -58,9 +59,9 @@
                 @Html.DisplayFor(modelItem => item.CreatedDateTime)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                    <a class="btn btn-danger"asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

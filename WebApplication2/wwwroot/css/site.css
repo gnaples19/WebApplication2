@@ -22,3 +22,42 @@ body {
     height: 15vw;
     object-fit: cover;
 }
+:root {
+    --bs-warning: #ff8c00;
+}
+    .btn-warning {
+    color: #fff;
+    background-color: #ff8c00;
+    border-color: #ff8c00;
+}
+
+    .btn-warning:hover {
+        color: #fff;
+        background-color: #b35500;
+        border-color: #ff8c00;
+    }
+
+    .btn-warning:focus, .btn-warning.focus {
+        box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.5);
+    }
+
+    .btn-warning.disabled, .btn-warning:disabled {
+        background-color: #b35500;
+        border-color: #ff8c00;
+    }
+
+    .btn-warning:active, .btn-warning.active,
+    .show > .btn-warning.dropdown-toggle {
+        background-color: #ff8c00;
+        background-image: none;
+        border-color: #ff8c00;
+    }
+
+
+.link-warning {
+    color: #ff8c00;
+}
+
+    .link-warning:hover, .link-warning:focus {
+        color: #ff8c00;
+    }
